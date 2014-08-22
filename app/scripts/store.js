@@ -1,0 +1,1 @@
+MapsterCms.ApplicationAdapter = DS.FixtureAdapter;
