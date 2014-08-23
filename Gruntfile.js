@@ -17,6 +17,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-include-source');
 
     // configurable paths
     var yeomanConfig = {
@@ -26,23 +27,52 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        includeSource: {
+            options: {
+                basePath: '<%= yeoman.app %>',
+                //baseUrl: 'public/',
+                templates: {
+                    html: {
+                        js: '<script src="{filePath}"></script>',
+                        css: '<link rel="stylesheet" type="text/css" href="{filePath}" />',
+                    }
+                }
+            },
+            app: {
+                files: {
+                '<%= yeoman.app %>/index.html': '<%= yeoman.app %>/index.tmpl'
+                }
+            }
+        },
+        wiredep: {
+            target: {
+                src: [
+                '<%= yeoman.app %>/index.html',
+                ],
+                exclude: ['bower_components/ember/ember.js', 'bower_components/ember-data/ember-data.js']
+            },
+        },
         watch: {
+            includeSource: {
+                files: '<%= yeoman.app %>/index.tmpl',
+                tasks: ['includeSource']
+            },
             emberTemplates: {
                 files: '<%= yeoman.app %>/templates/**/*.hbs',
                 tasks: ['emberTemplates']
             },
-            neuter: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['neuter']
-            },
+            //neuter: {
+            //    files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+            //    tasks: ['neuter']
+            //},
             livereload: {
                 options: {
                     livereload: LIVERELOAD_PORT
                 },
                 files: [
-                    '.tmp/scripts/*.js',
                     '<%= yeoman.app %>/*.html',
-                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+                    '<%= yeoman.app %>/scripts/**/*.js',
+                    '<%= yeoman.app %>/styles/**/*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
@@ -275,7 +305,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    '.tmp/scripts/compiled-templates.js': '<%= yeoman.app %>/templates/**/*.hbs'
+                    '<%= yeoman.app %>/scripts/templates.js': '<%= yeoman.app %>/templates/**/*.hbs'
                 }
             }
         },
@@ -306,7 +336,7 @@ module.exports = function (grunt) {
             'clean:server',
             'replace:app',
             'concurrent:server',
-            'neuter:app',
+            //'neuter:app',
             'connect:livereload',
             'open',
             'watch'
@@ -318,7 +348,7 @@ module.exports = function (grunt) {
         'replace:app',
         'concurrent:test',
         'connect:test',
-        'neuter:app',
+        //'neuter:app',
         'mocha'
     ]);
 
@@ -327,7 +357,7 @@ module.exports = function (grunt) {
         'replace:dist',
         'useminPrepare',
         'concurrent:dist',
-        'neuter:app',
+        //'neuter:app',
         'concat',
         'cssmin',
         'uglify',

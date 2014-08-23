@@ -11,9 +11,7 @@
         <!-- endbuild -->
 
         <!-- build:css styles/main.css -->
-            <link rel="stylesheet" type="text/css" href="styles/bootswatch.css" />
-            <link rel="stylesheet" type="text/css" href="styles/normalize.css" />
-            <link rel="stylesheet" type="text/css" href="styles/style.css" />
+            <!-- include: "type": "css", "files": "styles/*.css" -->
         <!-- endbuild -->
 </head>
     <body>
@@ -35,9 +33,9 @@
             <script src='scripts/templates.js'></script>
 
 
-            <script src="scripts/controllers/index.js"></script>
-            <script src="scripts/models/entity.js"></script>
-            <script src="scripts/routes/index.js"></script>
+            <!-- include: "type": "js", "files": "scripts/controllers/*.js" -->
+            <!-- include: "type": "js", "files": "scripts/models/*.js" -->
+            <!-- include: "type": "js", "files": "scripts/routes/*.js" -->
         <!-- endbuild -->
 </body>
 </html>

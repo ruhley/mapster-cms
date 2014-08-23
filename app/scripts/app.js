@@ -1,10 +1,13 @@
-var MapsterCms = window.MapsterCms = Ember.Application.create();
+window.App = Ember.Application.create({
+    // Basic logging, e.g. "Transitioned into 'post'"
+  LOG_TRANSITIONS: true,
 
-/* Order and include as you please. */
-require('scripts/controllers/*');
-require('scripts/store');
-require('scripts/models/*');
-require('scripts/routes/*');
-require('scripts/components/*');
-require('scripts/views/*');
-require('scripts/router');
+  // Extremely detailed logging, highlighting every internal
+  // step made while transitioning into a route, including
+  // `beforeModel`, `model`, and `afterModel` hooks, and
+  // information about redirects and aborted transitions
+  LOG_TRANSITIONS_INTERNAL: true,
+  LOG_VIEW_LOOKUPS: true,
+  LOG_ACTIVE_GENERATION: true,
+  LOG_STACKTRACE_ON_DEPRECATION: true
+});
