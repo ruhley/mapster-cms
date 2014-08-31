@@ -1,5 +1,5 @@
 App.IndexRoute = Ember.Route.extend({
-    model: function(params) {
-        this.store.get('Entity')
+    model: function(params, transition) {
+        return this.modelFor('application');
     }
 });

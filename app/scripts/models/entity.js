@@ -1,4 +1,8 @@
 App.Entity = DS.Model.extend({
-    name: attr('string'),
-    plural: attr('string')
+    name: DS.attr('string'),
+    plural: DS.attr('string'),
+
+    url: function() {
+        return this.get('name').replace(/\s+/g, '-').toLowerCase();
+    }.property('name')
 });

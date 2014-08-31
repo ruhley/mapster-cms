@@ -6,12 +6,14 @@
 
         <!-- build:css styles/vendor.css -->
             <!-- bower:css -->
-            <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /> -->
+            <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+            <link rel="stylesheet" href="bower_components/DataTables/media/css/jquery.dataTables.css" />
             <!-- endbower -->
         <!-- endbuild -->
 
         <!-- build:css styles/main.css -->
-            <!-- include: "type": "css", "files": "styles/*.css" -->
+            <!-- include: "type": "css", "files": "styles/**/*.css" -->
         <!-- endbuild -->
 </head>
     <body>
@@ -22,6 +24,7 @@
             <script src="bower_components/ember/ember.js"></script>
             <script src="bower_components/ember-data/ember-data.js"></script>
             <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="bower_components/DataTables/media/js/jquery.dataTables.js"></script>
             <!-- endbower -->
         <!-- endbuild -->
 
@@ -33,9 +36,9 @@
             <script src='scripts/templates.js'></script>
 
 
-            <!-- include: "type": "js", "files": "scripts/controllers/*.js" -->
-            <!-- include: "type": "js", "files": "scripts/models/*.js" -->
-            <!-- include: "type": "js", "files": "scripts/routes/*.js" -->
+            <!-- include: "type": "js", "files": "scripts/controllers/**/*.js" -->
+            <!-- include: "type": "js", "files": "scripts/models/**/*.js" -->
+            <!-- include: "type": "js", "files": "scripts/routes/**/*.js" -->
         <!-- endbuild -->
 </body>
 </html>
