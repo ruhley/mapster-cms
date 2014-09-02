@@ -11,3 +11,7 @@ window.App = Ember.Application.create({
     LOG_ACTIVE_GENERATION: true,
     LOG_STACKTRACE_ON_DEPRECATION: true
 });
+
+App.api = {
+    url: 'http://localhost/mapster-api/public'
+}

@@ -1,16 +1,23 @@
 DS.RESTAdapter.reopen({
-    host: 'http://localhost/mapster-api/public',
+    host: App.api.url,
     pathForType: function(type) {
         var camelized = Ember.String.camelize(type);
-        return Ember.String.pluralize(camelized).replace(/([A-Z])/g, '_$1').toLowerCase();
-    }
+        return Ember.String.underscore(Ember.String.pluralize(camelized));
+    },
+    createRecord: function(store, type, record) {
+        var data = {};
+        var serializer = store.serializerFor(type.typeKey);
+        serializer.serializeIntoHash(data, type, record, {
+            includeId: true
+        });
+
+        return this.ajax(this.buildURL(type.typeKey), "POST", {
+            data: data[type.typeKey]
+        });
+    },
 });
 
 DS.RESTSerializer.reopen({
-    extractCreateRecord: function(store, type, payload, id, requestType) {
-        console.log(arguments);
-        return this.extractSave(store, type, payload, id, requestType);
-    },
     extractSingle: function(store, type, payload, id, requestType) {
         payload = this.normalizePayload(payload, type);
         return this.normalize(type, payload);

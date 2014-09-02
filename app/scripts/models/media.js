@@ -1,6 +1,5 @@
-App.Universe = DS.Model.extend({
+App.Media = DS.Model.extend({
     name: DS.attr('string'),
-    abbreviation: DS.attr('string'),
     description: DS.attr('string'),
     image: DS.attr('string'),
     link: DS.attr('string'),
@@ -28,7 +27,7 @@ App.Universe = DS.Model.extend({
     }.property('link')
 });
 
-App.UniverseVersion = App.Universe.extend({
+App.MediaVersion = App.Media.extend({
     version_id: DS.attr('number'),
     created: DS.attr('date')
 });

@@ -1,7 +1,7 @@
 <h2 class='well'>Welcome to the Mapster CMS!</h2>
 
-<ul>
+<ul class='list-group'>
     {{#each entity in model.entities}}
-        <li>{{#link-to 'entity' entity.url}}{{entity.plural}}{{/link-to}}</li>
+        {{#link-to 'entity' entity.url class='list-group-item' tagg='li'}}{{entity.plural}}{{/link-to}}
     {{/each}}
 </ul>

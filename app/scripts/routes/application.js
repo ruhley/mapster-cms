@@ -19,6 +19,8 @@ App.ApplicationRoute = Ember.Route.extend({
                     }
                 }
             }
+
+            return hash;
         });
     }
 });
