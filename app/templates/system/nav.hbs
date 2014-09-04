@@ -9,16 +9,29 @@
               </button>
         </div>
         <div id='navbar-main' class='navbar-collapse collapse'>
-          <ul class='nav navbar-nav'>
-                <li class='dropdown'>
-                  <a id='entities' href='#' data-toggle='dropdown' class='dropdown-toggle'>Entities <span class='caret'></span></a>
-                    <ul aria-labelledby='entities' class='dropdown-menu'>
-                        {{#each entity in model.entities}}
-                            <li>{{#link-to 'entity' entity.url}}{{entity.plural}}{{/link-to}}</li>
-                        {{/each}}
-                    </ul>
-                </li>
-          </ul>
+            <ul class='nav navbar-nav'>
+                {{#if model.entities}}
+                    <li class='dropdown'>
+                      <a id='entities' href='#' data-toggle='dropdown' class='dropdown-toggle'>Entities <span class='caret'></span></a>
+                        <ul aria-labelledby='entities' class='dropdown-menu'>
+                            {{#each entity in model.entities}}
+                                <li>{{#link-to 'entity' entity.url}}{{entity.plural}}{{/link-to}}</li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/if}}
+
+                {{#if model.items}}
+                    <li class='dropdown'>
+                      <a id='items' href='#' data-toggle='dropdown' class='dropdown-toggle'>{{model.entity.plural}} <span class='caret'></span></a>
+                        <ul aria-labelledby='items' class='dropdown-menu'>
+                            {{#each item in model.items}}
+                                <li>{{#link-to 'entity.info' model.entity.url item.url}}{{item.name}}{{/link-to}}</li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/if}}
+            </ul>
 
           <ul class='nav navbar-nav navbar-right'>
             <li><a target='_blank' href='http://builtwithbootstrap.com/'>About</a></li>

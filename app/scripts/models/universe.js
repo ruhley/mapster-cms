@@ -12,7 +12,7 @@ App.Universe = DS.Model.extend({
         var image = this.get('image');
 
         if (image) {
-            return '<img src="' + image + '" alt="" />';
+            return '<div class="media"><img src="' + image + '" alt="" class="media-object" style="max-height:100px; min-height:100px;"/></div>';
         }
 
         return '<span class="fa-stack fa-lg" title="No image available"><i class="fa fa-picture-o fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span>';

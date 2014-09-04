@@ -1,4 +1,4 @@
-App.EntityInfoRoute = Ember.Route.extend({
+App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
     model: function(params, transition) {
         var _this = this;
 

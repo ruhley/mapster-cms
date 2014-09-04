@@ -14,7 +14,7 @@ DS.RESTAdapter.reopen({
         return this.ajax(this.buildURL(type.typeKey), "POST", {
             data: data[type.typeKey]
         });
-    },
+    }
 });
 
 DS.RESTSerializer.reopen({

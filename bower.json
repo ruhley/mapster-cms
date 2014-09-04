@@ -10,7 +10,8 @@
     "font-awesome": "~4.2.0",
     "DataTables": "~1.10.2",
     "moment": "~2.8.2",
-    "numeral": "~1.5.3"
+    "numeral": "~1.5.3",
+    "bootstrap-fileinput": "~2.1.0"
   },
   "devDependencies": {}
 }

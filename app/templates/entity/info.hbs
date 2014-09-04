@@ -1,5 +1,8 @@
+{{partial 'system/nav'}}
+
 <h2 class='well'>{{model.item.name}}</h2>
-<form class='form-horizontal' role='form'>
+
+<form class='form-horizontal' role='form' id='form-version'>
     {{#each field in model.fields}}
         {{#compare field 'name'}}
             {{name-field item=model.item}}

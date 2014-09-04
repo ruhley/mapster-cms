@@ -1,7 +1,7 @@
 <div class='form-group'>
     <label for='image' class='control-label col-sm-4'>Image</label>
-
+{{item.image}}
     <div class='col-sm-8'>
-        {{input type='text' id='image' class='form-control' value=item.image}}
+        {{input type='file' id='image' accept='image/*' value=item.image data-image=item.image}}
     </div>
 </div>
