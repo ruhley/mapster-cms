@@ -32,3 +32,13 @@ App.ImageFieldComponent = Ember.Component.extend({
 });
 App.LinkFieldComponent = Ember.Component.extend();
 App.AbbreviationFieldComponent = Ember.Component.extend();
+App.UniverseFieldComponent = Ember.Component.extend({
+    didInsertElement: function() {
+        this.set('universes', this.get('targetObject.store').find('universe'));
+    }
+});
+App.MediaFieldComponent = Ember.Component.extend({
+    didInsertElement: function() {
+        this.set('media', this.get('targetObject.store').find('media'));
+    }
+});

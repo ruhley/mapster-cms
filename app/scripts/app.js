@@ -13,5 +13,5 @@ window.App = Ember.Application.create({
 });
 
 App.api = {
-    url: 'http://localhost/mapster-api/public'
+    url: 'http://localhost/mapster-api'
 }

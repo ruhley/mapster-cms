@@ -29,6 +29,6 @@ App.Universe = DS.Model.extend({
 });
 
 App.UniverseVersion = App.Universe.extend({
-    version_id: DS.attr('number'),
+    universe_id: DS.attr('number'),
     created: DS.attr('date')
 });

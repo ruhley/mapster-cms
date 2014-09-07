@@ -1,4 +1,4 @@
-App.Entity = DS.Model.extend({
+App.MapsterEntity = DS.Model.extend({
     name: DS.attr('string'),
     plural: DS.attr('string'),
 

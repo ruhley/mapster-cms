@@ -1,0 +1,7 @@
+<div class='form-group'>
+    <label for='media' class='control-label col-sm-4'>Media</label>
+
+    <div class='col-sm-8'>
+        {{view Ember.Select id='media' class='form-control' value=item.media_id content=media optionValuePath='content.id' optionLabelPath='content.name' prompt='Please select a media'}}
+    </div>
+</div>

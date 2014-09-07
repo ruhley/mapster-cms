@@ -25,6 +25,8 @@
                     <li class='dropdown'>
                       <a id='items' href='#' data-toggle='dropdown' class='dropdown-toggle'>{{model.entity.plural}} <span class='caret'></span></a>
                         <ul aria-labelledby='items' class='dropdown-menu'>
+                            <li>{{#link-to 'entity.info' model.entity.url 0}}Create{{/link-to}}</li>
+                            <li class='divider'></li>
                             {{#each item in model.items}}
                                 <li>{{#link-to 'entity.info' model.entity.url item.url}}{{item.name}}{{/link-to}}</li>
                             {{/each}}
@@ -33,10 +35,10 @@
                 {{/if}}
             </ul>
 
-          <ul class='nav navbar-nav navbar-right'>
-            <li><a target='_blank' href='http://builtwithbootstrap.com/'>About</a></li>
-          </ul>
+            <ul class='nav navbar-nav navbar-right'>
+                <li><a target='_blank' href='http://builtwithbootstrap.com/'>About</a></li>
+            </ul>
 
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>

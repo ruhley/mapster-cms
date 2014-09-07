@@ -1,0 +1,7 @@
+<div class='form-group'>
+    <label for='universe' class='control-label col-sm-4'>Universe</label>
+
+    <div class='col-sm-8'>
+        {{view Ember.Select id='universe' class='form-control' value=item.universe_id content=universes optionValuePath='content.id' optionLabelPath='content.name' prompt='Please select a universe'}}
+    </div>
+</div>

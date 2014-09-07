@@ -1,10 +1,10 @@
-App.Media = DS.Model.extend({
+App.Chapter = DS.Model.extend({
     name: DS.attr('string'),
     abbreviation: DS.attr('string'),
     description: DS.attr('string'),
     image: DS.attr('string'),
     link: DS.attr('string'),
-    universe_id: DS.attr('number'),
+    media_id: DS.attr('number'),
 
     url: function() {
         return this.get('id');
@@ -29,10 +29,7 @@ App.Media = DS.Model.extend({
     }.property('link')
 });
 
-App.MediaVersion = App.Media.extend({
-    media_id: DS.attr('number'),
+App.ChapterVersion = App.Chapter.extend({
+    chapter_id: DS.attr('number'),
     created: DS.attr('date')
 });
-
-
-Ember.Inflector.inflector.uncountable('media');

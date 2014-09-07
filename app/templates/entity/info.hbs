@@ -1,31 +1,49 @@
 {{partial 'system/nav'}}
 
-<h2 class='well'>{{model.item.name}}</h2>
+<h2 class='well'>
+    {{#if model.item.id}}
+        {{model.item.name}}
+    {{else}}
+        Create New {{model.entity.name}}
+    {{/if}}
+</h2>
 
 <form class='form-horizontal' role='form' id='form-version'>
     {{#each field in model.fields}}
-        {{#compare field 'name'}}
+        {{#compare field.mapster_entity_field_type.name 'name'}}
             {{name-field item=model.item}}
         {{/compare}}
 
-        {{#compare field 'description'}}
+        {{#compare field.mapster_entity_field_type.name 'description'}}
             {{description-field item=model.item}}
         {{/compare}}
 
-        {{#compare field 'image'}}
+        {{#compare field.mapster_entity_field_type.name 'image'}}
             {{image-field item=model.item}}
         {{/compare}}
 
-        {{#compare field 'link'}}
+        {{#compare field.mapster_entity_field_type.name 'link'}}
             {{link-field item=model.item}}
         {{/compare}}
 
-        {{#compare field 'abbreviation'}}
+        {{#compare field.mapster_entity_field_type.name 'abbreviation'}}
             {{abbreviation-field item=model.item}}
+        {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'universe'}}
+            {{universe-field item=model.item}}
+        {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'media'}}
+            {{media-field item=model.item}}
         {{/compare}}
     {{/each}}
 
-    <button class='btn btn-success pull-right' {{action 'createVersion'}}>Create Version</button>
+    {{#if model.item.id}}
+        <button class='btn btn-success pull-right' {{action 'update'}}>Update</button>
+    {{else}}
+        <button class='btn btn-success pull-right' {{action 'create'}}>Create New {{model.entity.name}}</button>
+    {{/if}}
 </form>
 
 <h3>Versions</h3>
@@ -40,6 +58,7 @@
                 <th>Image</th>
                 <th>Link</th>
                 <th>Created On</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody></tbody>

@@ -1,6 +1,7 @@
 App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
     model: function(params, transition) {
-        var _this = this;
+        var _this = this,
+            baseModel = _this.modelFor('entity');
 
         this.params = {
             entity: transition.params.entity.entity,
@@ -9,14 +10,25 @@ App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
 
         if (this.params.entity) {
             if (this.params.id) {
-                return Em.RSVP.hash({
-                    item: this.store.find(this.params.entity, this.params.id),
-                    versions: this.store.find(this.params.entity + '_version'),
-                    fields: Ember.$.get(App.api.url + '/entity_fields/' + this.params.id)
-                }).then(function(hash) {
-                    return $.extend(true, hash, _this.modelFor('entity'));
-                });
-
+                if (this.params.id == 0) {
+                    return Em.RSVP.hash({
+                        item: this.store.createRecord(this.params.entity),
+                        versions: [],
+                        fields: Ember.$.get(App.api.url + '/mapster_entity_fields.json?order=sequence&contains=MapsterEntityFieldTypes&conditions=mapster_entity_id=' + baseModel.entity.get('id'))
+                    }).then(function(hash) {
+                        hash.fields = hash.fields.data;
+                        return $.extend(true, hash, baseModel);
+                    });
+                } else {
+                    return Em.RSVP.hash({
+                        item: this.store.find(this.params.entity, this.params.id),
+                        versions: this.store.find(this.params.entity + '_version'),
+                        fields: Ember.$.get(App.api.url + '/mapster_entity_fields.json?order=sequence&contains=MapsterEntityFieldTypes&conditions=mapster_entity_id=' + baseModel.entity.get('id'))
+                    }).then(function(hash) {
+                        hash.fields = hash.fields.data;
+                        return $.extend(true, hash, baseModel);
+                    });
+                }
             } else {
                 throw new Error('Id is required');
             }
@@ -25,23 +37,33 @@ App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
         }
     },
     actions: {
-        createVersion: function() {
+        update: function() {
             var _this = this,
                 item = this.controller.get('model.item');
 
             if (item.get('isDirty')) {
-                var record = $.extend(true, {}, item._data, item._attributes, {
-                        version_id: item._data.id,
-                        id: null
-                    }),
-                    version = this.store.createRecord(this.params.entity + '_version', record);
+                item.save().then(function() {
 
-                version.save().then(function() {
-                    $('#version-list').DataTable().row.add(version).draw();
+                }, function() {
+                    item.rollback();
                 });
             } else {
                 alert('You have not entered any changes');
             }
         },
+        create: function() {
+            var _this = this,
+                item = this.controller.get('model.item');
+
+            if (item.get('isDirty')) {
+                item.save().then(function() {
+
+                }, function() {
+                    item.rollback();
+                });
+            } else {
+                alert('You have not entered any changes');
+            }
+        }
     }
 });
