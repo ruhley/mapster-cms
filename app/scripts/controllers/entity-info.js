@@ -12,8 +12,6 @@ App.EntityInfoController = Ember.Controller.extend({
             columns: [{
                 data: '_data.name'
             }, {
-                data: '_data.abbreviation'
-            }, {
                 data: '_data.description'
             }, {
                 data: '_data.image'
@@ -25,17 +23,17 @@ App.EntityInfoController = Ember.Controller.extend({
                 data: null
             }],
             order: [
-                [5, 'desc']
+                [4, 'desc']
             ],
             createdRow: function(row, data) {
                 var tr = $(row);
 
-                tr.find('td:eq(3)').html(data.get('imageDisplay'));
-                tr.find('td:eq(4)').html(data.get('linkTo'));
-                tr.find('td:eq(5)').html(dateFormat(data.get('created'), 'DD/MM/YYYY HH:mm:ss'));
+                tr.find('td:eq(2)').html(data.get('imageDisplay'));
+                tr.find('td:eq(3)').html(data.get('linkTo'));
+                tr.find('td:eq(4)').html(dateFormat(data.get('created'), 'DD/MM/YYYY HH:mm:ss'));
                 $('<button>').addClass('btn btn-success').text('Make Live').click(function() {
 
-                }).appendTo(tr.find('td:eq(6)'));
+                }).appendTo(tr.find('td:eq(5)'));
             }
         });
     }

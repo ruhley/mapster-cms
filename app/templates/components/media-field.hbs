@@ -2,6 +2,21 @@
     <label for='media' class='control-label col-sm-4'>Media</label>
 
     <div class='col-sm-8'>
-        {{view Ember.Select id='media' class='form-control' value=item.media_id content=media optionValuePath='content.id' optionLabelPath='content.name' prompt='Please select a media'}}
+        <select id='media' class='form-control'>
+            <option value=''>
+                {{#if media}}
+                    Please select media
+                {{else}}
+                    <i class='fa fa-refresh fa-spin'></i> Loading media...
+                {{/if}}
+            </option>
+            {{#each m in media}}
+                {{#compare m.id '==' item.media_id}}
+                    <option {{bind-attr value=m.id}} selected='selected'>{{m.name}}</option>
+                {{else}}
+                    <option {{bind-attr value=m.id}}>{{m.name}}</option>
+                {{/compare}}
+            {{/each}}
+        </select>
     </div>
 </div>

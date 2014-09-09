@@ -37,6 +37,10 @@
         {{#compare field.mapster_entity_field_type.name 'media'}}
             {{media-field item=model.item}}
         {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'sequence'}}
+            {{sequence-field item=model.item}}
+        {{/compare}}
     {{/each}}
 
     {{#if model.item.id}}
@@ -53,7 +57,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Abbreviation</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th>Link</th>

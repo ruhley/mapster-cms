@@ -5,7 +5,8 @@ App.ImageFieldComponent = Ember.Component.extend({
         var _this = this,
             container = Ember.$('#' + this.elementId),
             el = container.find('input'),
-            currentImage = el.data('image'),
+            item = this.get('item'),
+            currentImage = item.get('image'),
             initialPreview = currentImage ? '<img src="' + currentImage + '" class="file-preview-image" alt="">' : '';
 
         el.fileinput({
@@ -18,6 +19,8 @@ App.ImageFieldComponent = Ember.Component.extend({
             showUpload: false,
             maxFileSize: 5000,
             maxFileCount: 1,
+            msgLoading: '',
+            msgProgress: '',
             initialPreview: initialPreview
         }).on('fileloaded', function(evt, file, id) {
             var reader = new FileReader();
@@ -34,11 +37,23 @@ App.LinkFieldComponent = Ember.Component.extend();
 App.AbbreviationFieldComponent = Ember.Component.extend();
 App.UniverseFieldComponent = Ember.Component.extend({
     didInsertElement: function() {
+        var _this = this;
+
         this.set('universes', this.get('targetObject.store').find('universe'));
+
+        Ember.$('#' + this.elementId + ' select').change(function() {
+            _this.set('item.universe_id', $(this).val());
+        });
     }
 });
 App.MediaFieldComponent = Ember.Component.extend({
     didInsertElement: function() {
+        var _this = this;
+
         this.set('media', this.get('targetObject.store').find('media'));
+
+        Ember.$('#' + this.elementId + ' select').change(function() {
+            _this.set('item.media_id', $(this).val());
+        });
     }
 });

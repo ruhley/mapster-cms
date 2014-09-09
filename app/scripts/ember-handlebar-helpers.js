@@ -37,7 +37,6 @@ Ember.Handlebars.helper('repeat', function(item, times) {
 
 Ember.Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options) {
     var operators, result;
-
     if (arguments.length < 3) {
         throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
     }
@@ -51,6 +50,7 @@ Ember.Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, op
     lvalue = Ember.Handlebars.get(this, lvalue, options) || lvalue;
     operator = Ember.Handlebars.get(this, operator, options) || operator;
     rvalue = Ember.Handlebars.get(this, rvalue, options) || rvalue;
+
 
     operators = {
         '==': function(l, r) {
