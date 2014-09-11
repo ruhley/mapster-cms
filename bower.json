@@ -2,16 +2,17 @@
   "name": "mapster-cms",
   "version": "0.0.0",
   "dependencies": {
-    "ember": "~1.7.0",
+    "ember": "~1.8.0",
     "jquery": "~2.1.1",
-    "handlebars": "~1.3.0",
-    "ember-data": "~1.0.0-beta.9",
+    "handlebars": "~2.0.0",
+    "ember-data": "~1.0.0-beta.10",
     "bootstrap": "~3.2.0",
     "font-awesome": "~4.2.0",
     "DataTables": "~1.10.2",
     "moment": "~2.8.2",
     "numeral": "~1.5.3",
-    "bootstrap-fileinput": "~2.1.0"
+    "bootstrap-fileinput": "~2.1.0",
+    "snap.svg": "~0.3.0"
   },
   "devDependencies": {}
 }

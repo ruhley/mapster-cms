@@ -37,6 +37,22 @@
         {{#compare field.mapster_entity_field_type.name 'media'}}
             {{media-field item=model.item}}
         {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'sequence'}}
+            {{sequence-field item=model.item}}
+        {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'map'}}
+            {{map-field item=model.item}}
+        {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'coordinates'}}
+            {{coordinates-field item=model.item}}
+        {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'place-type'}}
+            {{place-type-field item=model.item}}
+        {{/compare}}
     {{/each}}
 
     {{#if model.item.id}}
@@ -46,23 +62,25 @@
     {{/if}}
 </form>
 
-<h3>Versions</h3>
 
-{{#if model.versions}}
-    <table id='version-list'>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Abbreviation</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Link</th>
-                <th>Created On</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-{{else}}
-    No versions available
+{{#if model.item.id}}
+    <h3>Versions</h3>
+
+    {{#if model.versions}}
+        <table id='version-list'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Link</th>
+                    <th>Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    {{else}}
+        No versions available
+    {{/if}}
 {{/if}}

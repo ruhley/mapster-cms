@@ -4,20 +4,27 @@ App.ImageFieldComponent = Ember.Component.extend({
     didInsertElement: function() {
         var _this = this,
             container = Ember.$('#' + this.elementId),
-            el = container.find('input'),
-            currentImage = el.data('image'),
+            local = container.find('.local-image'),
+            url = container.find('#url-image'),
+            urlButton = container.find('.url-image-button'),
+            item = this.get('item'),
+            currentImage = item.get('image'),
             initialPreview = currentImage ? '<img src="' + currentImage + '" class="file-preview-image" alt="">' : '';
 
-        el.fileinput({
+        local.fileinput({
             previewFileType: 'image',
-            browseLabel: 'Pick Image',
+            browseLabel: 'Local Image',
             browseIcon: '<i class="glyphicon glyphicon-picture"></i> ',
             removeClass: 'btn btn-danger',
-            previewTemplate: '<div class="pull-right col-sm-8"><div class="file-preview-thumbnails"></div><div class="clearfix"></div><div class="file-preview-status text-center text-success"></div></div>',
+            elPreviewContainer: '#image-preview',
+            elPreviewImage: '#image-preview .file-preview-thumbnails',
+            previewTemplate: '',
             showCaption: false,
             showUpload: false,
             maxFileSize: 5000,
             maxFileCount: 1,
+            msgLoading: '',
+            msgProgress: '',
             initialPreview: initialPreview
         }).on('fileloaded', function(evt, file, id) {
             var reader = new FileReader();
@@ -28,17 +35,50 @@ App.ImageFieldComponent = Ember.Component.extend({
         }).on('fileclear', function(event) {
             _this.set('item.image', '');
         });
+
+        urlButton.click(function(evt) {
+            evt.preventDefault();
+
+            var image = url.val(),
+                extension = /(?:\.([^.]+))?$/.exec(image)[1].toLowerCase(),
+                allowed = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if ($.inArray(extension, allowed) === -1) {
+                alert('Invalid url given');
+            } else {
+                _this.set('item.image', image);
+                $('#image-preview .file-preview-thumbnails').html('<img src="' + image + '" class="file-preview-frame" alt="">');
+            }
+        });
     }
 });
 App.LinkFieldComponent = Ember.Component.extend();
 App.AbbreviationFieldComponent = Ember.Component.extend();
-App.UniverseFieldComponent = Ember.Component.extend({
-    didInsertElement: function() {
-        this.set('universes', this.get('targetObject.store').find('universe'));
+App.UniverseFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
+    options: {
+        model: 'universes',
+        variable: 'universe',
+        field: 'universe_id'
     }
 });
-App.MediaFieldComponent = Ember.Component.extend({
-    didInsertElement: function() {
-        this.set('media', this.get('targetObject.store').find('media'));
+App.MediaFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
+    options: {
+        model: 'media',
+        variable: 'media',
+        field: 'media_id'
+    }
+});
+App.MapFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
+    options: {
+        model: 'map',
+        variable: 'maps',
+        field: 'map_id'
+    }
+});
+App.PlaceTypeFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
+    options: {
+        model: 'place-type',
+        variable: 'placeTypes',
+        field: 'place_type_id'
     }
 });

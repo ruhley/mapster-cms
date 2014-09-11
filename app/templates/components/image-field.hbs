@@ -1,6 +1,21 @@
 <div class='form-group'>
     <label for='image' class='control-label col-sm-4'>Image</label>
     <div class='col-sm-8'>
-        {{input type='file' id='image' accept='image/*'}}
+        <div class='col-sm-6'>
+            <div class='form-group'>
+                {{input type='file' id='image' accept='image/*' class='local-image'}}
+            </div>
+
+            <div class='col-sm-6'>
+                {{input type='text' id='url-image'}}
+            </div>
+            <button class='btn btn-primary url-image-button col-sm-6'><i class='glyphicon glyphicon-picture'></i> Url Image</button>
+        </div>
+
+        <div class='pull-right col-sm-6' id='image-preview'>
+            <div class='file-preview-thumbnails'></div>
+            <div class='clearfix'></div>
+            <div class='file-preview-status text-center text-success'></div>
+        </div>
     </div>
 </div>

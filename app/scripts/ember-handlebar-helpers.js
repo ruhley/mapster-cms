@@ -25,6 +25,18 @@ Ember.Handlebars.helper('date-format', function(value, format) {
     return dateFormat(value, format);
 });
 
+Ember.Handlebars.registerHelper('coords', function(coords, options) {
+    coords = Ember.Handlebars.get(this, coords, options) || coords;
+    coords = coords.split(',');
+
+    if (coords.length === 1) {
+        coords = coords.join('').split(' ');
+        return '<circle cx="' + coords[0] + '" cy="' + coords[1] + '" r="5" class="other-places"></circle > ';
+    }
+
+    return ' <path d="M ' + coords.join(' L ') + '" class="other-places"> </path>';
+});
+
 Ember.Handlebars.helper('repeat', function(item, times) {
     var string = [];
 
@@ -37,7 +49,6 @@ Ember.Handlebars.helper('repeat', function(item, times) {
 
 Ember.Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options) {
     var operators, result;
-
     if (arguments.length < 3) {
         throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
     }
@@ -51,6 +62,7 @@ Ember.Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, op
     lvalue = Ember.Handlebars.get(this, lvalue, options) || lvalue;
     operator = Ember.Handlebars.get(this, operator, options) || operator;
     rvalue = Ember.Handlebars.get(this, rvalue, options) || rvalue;
+
 
     operators = {
         '==': function(l, r) {

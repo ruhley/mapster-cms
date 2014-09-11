@@ -1,12 +1,15 @@
 App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
     model: function(params, transition) {
         var _this = this,
-            baseModel = _this.modelFor('entity');
+            baseModel = _this.modelFor('entity'),
+            version = {};
 
         this.params = {
             entity: transition.params.entity.entity,
             id: params.id
         };
+
+        version[this.params.entity + '_id'] = this.params.id;
 
         if (this.params.entity) {
             if (this.params.id) {
@@ -22,7 +25,7 @@ App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
                 } else {
                     return Em.RSVP.hash({
                         item: this.store.find(this.params.entity, this.params.id),
-                        versions: this.store.find(this.params.entity + '_version'),
+                        versions: this.store.find(this.params.entity + '_version', version),
                         fields: Ember.$.get(App.api.url + '/mapster_entity_fields.json?order=sequence&contains=MapsterEntityFieldTypes&conditions=mapster_entity_id=' + baseModel.entity.get('id'))
                     }).then(function(hash) {
                         hash.fields = hash.fields.data;
@@ -57,9 +60,13 @@ App.EntityInfoRoute = Ember.Route.extend(App.AfterModelMixin, {
 
             if (item.get('isDirty')) {
                 item.save().then(function() {
+                    var id = item.get('id');
 
+                    if (id) {
+                        _this.transitionTo('entity.info', _this.params.entity, id);
+                    }
                 }, function() {
-                    item.rollback();
+                    //item.rollback();
                 });
             } else {
                 alert('You have not entered any changes');

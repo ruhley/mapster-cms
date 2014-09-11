@@ -1,0 +1,22 @@
+<div class='form-group'>
+    <label for='map' class='control-label col-sm-4'>Map</label>
+
+    <div class='col-sm-8'>
+        <select id='map' class='form-control'>
+            <option value=''>
+                {{#if maps}}
+                    Please select a map
+                {{else}}
+                    Loading maps...
+                {{/if}}
+            </option>
+            {{#each map in maps}}
+                {{#compare map.id '==' item.map_id}}
+                    <option {{bind-attr value=map.id}} selected='selected'>{{map.name}}</option>
+                {{else}}
+                    <option {{bind-attr value=map.id}}>{{map.name}}</option>
+                {{/compare}}
+            {{/each}}
+        </select>
+    </div>
+</div>
