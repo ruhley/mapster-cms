@@ -56,7 +56,7 @@ App.LinkFieldComponent = Ember.Component.extend();
 App.AbbreviationFieldComponent = Ember.Component.extend();
 App.UniverseFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
     options: {
-        model: 'universes',
+        model: 'universe',
         variable: 'universe',
         field: 'universe_id'
     }
