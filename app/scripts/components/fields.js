@@ -82,3 +82,10 @@ App.PlaceTypeFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
         field: 'place_type_id'
     }
 });
+App.ChapterFieldComponent = Ember.Component.extend(App.EntityFieldMixin, {
+    options: {
+        model: 'chapter',
+        variable: 'chapters',
+        field: 'chapter_id'
+    }
+});

@@ -1,0 +1,22 @@
+<div class='form-group'>
+    <label for='chapter' class='control-label col-sm-4'>Chapter</label>
+
+    <div class='col-sm-8'>
+        <select id='chapter' class='form-control'>
+            <option value=''>
+                {{#if chapters}}
+                    Please select a chapter
+                {{else}}
+                    Loading chapters...
+                {{/if}}
+            </option>
+            {{#each chapter in chapters}}
+                {{#compare chapter.id '==' item.chapter_id}}
+                    <option {{bind-attr value=chapter.id}} selected='selected'>{{chapter.sequence}}: {{chapter.name}}</option>
+                {{else}}
+                    <option {{bind-attr value=chapter.id}}>{{chapter.sequence}}: {{chapter.name}}</option>
+                {{/compare}}
+            {{/each}}
+        </select>
+    </div>
+</div>

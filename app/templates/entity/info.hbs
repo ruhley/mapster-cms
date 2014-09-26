@@ -53,6 +53,10 @@
         {{#compare field.mapster_entity_field_type.name 'place-type'}}
             {{place-type-field item=model.item}}
         {{/compare}}
+
+        {{#compare field.mapster_entity_field_type.name 'chapter'}}
+            {{chapter-field item=model.item}}
+        {{/compare}}
     {{/each}}
 
     {{#if model.item.id}}
