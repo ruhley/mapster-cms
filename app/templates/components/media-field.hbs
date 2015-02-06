@@ -2,21 +2,6 @@
     <label for='media' class='control-label col-sm-4'>Media</label>
 
     <div class='col-sm-8'>
-        <select id='media' class='form-control'>
-            <option value=''>
-                {{#if media}}
-                    Please select media
-                {{else}}
-                    Loading media...
-                {{/if}}
-            </option>
-            {{#each m in media}}
-                {{#compare m.id '==' item.media_id}}
-                    <option {{bind-attr value=m.id}} selected='selected'>{{m.name}}</option>
-                {{else}}
-                    <option {{bind-attr value=m.id}}>{{m.name}}</option>
-                {{/compare}}
-            {{/each}}
-        </select>
+        {{view 'select' content=media.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
     </div>
 </div>

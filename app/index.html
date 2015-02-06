@@ -1,69 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Mapster CMS</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mapster CMS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- build:css styles/vendor.css -->
-            <!-- bower:css -->
-            <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-            <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-            <link rel="stylesheet" href="bower_components/DataTables/media/css/jquery.dataTables.css" />
-            <link rel="stylesheet" href="bower_components/bootstrap-fileinput/css/fileinput.min.css" />
-            <!-- endbower -->
-        <!-- endbuild -->
+    {{content-for 'head'}}
 
-        <!-- build:css styles/main.css -->
-            <link rel="stylesheet" type="text/css" href="styles/style.css" />
-        <!-- endbuild -->
-</head>
-    <body>
-        <!-- build:css styles/vendor.css -->
-            <!-- bower:js -->
-            <script src="bower_components/jquery/dist/jquery.js"></script>
-            <script src="bower_components/handlebars/handlebars.js"></script>
-            <script src="bower_components/ember/ember.js"></script>
-            <script src="bower_components/ember-data/ember-data.js"></script>
-            <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="bower_components/DataTables/media/js/jquery.dataTables.js"></script>
-            <script src="bower_components/moment/moment.js"></script>
-            <script src="bower_components/numeral/numeral.js"></script>
-            <script src="bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
-            <script src="bower_components/snap.svg/dist/snap.svg-min.js"></script>
-            <!-- endbower -->
-        <!-- endbuild -->
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/mapster-cms.css">
 
+    {{content-for 'head-footer'}}
+  </head>
+  <body>
+    {{content-for 'body'}}
 
-        <!-- build:js scripts/main.js -->
-            <script src='scripts/app.js'></script>
-            <script src='scripts/router.js'></script>
-            <script src='scripts/store.js'></script>
-            <script src='scripts/helpers.js'></script>
-            <script src='scripts/ember-handlebar-helpers.js'></script>
-            <script src='scripts/templates.js'></script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/mapster-cms.js"></script>
 
-
-            <script src="scripts/mixins/after-model.js"></script>
-            <script src="scripts/mixins/entity-field.js"></script>
-            <script src="scripts/mixins/models.js"></script>
-            <script src="scripts/controllers/entity-info.js"></script>
-            <script src="scripts/controllers/entity.js"></script>
-            <script src="scripts/controllers/index.js"></script>
-            <script src="scripts/models/chapters.js"></script>
-            <script src="scripts/models/characters.js"></script>
-            <script src="scripts/models/entity.js"></script>
-            <script src="scripts/models/events.js"></script>
-            <script src="scripts/models/maps.js"></script>
-            <script src="scripts/models/media.js"></script>
-            <script src="scripts/models/place-types.js"></script>
-            <script src="scripts/models/places.js"></script>
-            <script src="scripts/models/universe.js"></script>
-            <script src="scripts/routes/application.js"></script>
-            <script src="scripts/routes/entity-info.js"></script>
-            <script src="scripts/routes/entity.js"></script>
-            <script src="scripts/routes/index.js"></script>
-            <script src="scripts/components/coordinates-field.js"></script>
-            <script src="scripts/components/fields.js"></script>
-        <!-- endbuild -->
-</body>
+    {{content-for 'body-footer'}}
+  </body>
 </html>

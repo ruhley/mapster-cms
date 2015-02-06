@@ -2,21 +2,6 @@
     <label for='universe' class='control-label col-sm-4'>Universe</label>
 
     <div class='col-sm-8'>
-        <select id='universe' class='form-control'>
-            <option value=''>
-                {{#if universes}}
-                    Please select a universe
-                {{else}}
-                    Loading universes...
-                {{/if}}
-            </option>
-            {{#each universe in universes}}
-                {{#compare universe.id '==' item.universe_id}}
-                    <option {{bind-attr value=universe.id}} selected='selected'>{{universe.name}}</option>
-                {{else}}
-                    <option {{bind-attr value=universe.id}}>{{universe.name}}</option>
-                {{/compare}}
-            {{/each}}
-        </select>
+        {{view 'select' content=universe.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
     </div>
 </div>

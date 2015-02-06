@@ -3,6 +3,10 @@
 <h2 class='well'>
     {{#if model.item.id}}
         {{model.item.name}}
+
+        {{#if model.entity.changes}}
+            {{#link-to 'entity' model.entity.changesUrl class='pull-right'}}View Changes{{/link-to}}
+        {{/if}}
     {{else}}
         Create New {{model.entity.name}}
     {{/if}}
@@ -10,53 +14,7 @@
 
 <form class='form-horizontal' role='form' id='form-version'>
     {{#each field in model.fields}}
-        {{#compare field.mapster_entity_field_type.name 'name'}}
-            {{name-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'description'}}
-            {{description-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'image'}}
-            {{image-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'link'}}
-            {{link-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'abbreviation'}}
-            {{abbreviation-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'universe'}}
-            {{universe-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'media'}}
-            {{media-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'sequence'}}
-            {{sequence-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'map'}}
-            {{map-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'coordinates'}}
-            {{coordinates-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'place-type'}}
-            {{place-type-field item=model.item}}
-        {{/compare}}
-
-        {{#compare field.mapster_entity_field_type.name 'chapter'}}
-            {{chapter-field item=model.item}}
-        {{/compare}}
+        {{component field.mapster_entity_field_type.component item=model.item}}
     {{/each}}
 
     {{#if model.item.id}}
@@ -82,7 +40,18 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                {{#each version in model.versions}}
+                    <tr>
+                        <td>{{version.name}}</td>
+                        <td>{{truncate-string version.description 150}}</td>
+                        <td>{{{version.imageDisplay}}}</td>
+                        <td>{{version.link}}</td>
+                        <td>{{date-time-format version.created}}</td>
+                        <td><button class='btn btn-success'>Make Live</button></td>
+                    </tr>
+                {{/each}}
+            </tbody>
         </table>
     {{else}}
         No versions available

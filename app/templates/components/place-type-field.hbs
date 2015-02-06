@@ -2,21 +2,6 @@
     <label for='place-type' class='control-label col-sm-4'>Place Type</label>
 
     <div class='col-sm-8'>
-        <select id='place-type' class='form-control'>
-            <option value=''>
-                {{#if placeTypes}}
-                    Please select a place type
-                {{else}}
-                    Loading place types...
-                {{/if}}
-            </option>
-            {{#each placeType in placeTypes}}
-                {{#compare placeType.id '==' item.place_type_id}}
-                    <option {{bind-attr value=placeType.id}} selected='selected'>{{placeType.name}}</option>
-                {{else}}
-                    <option {{bind-attr value=placeType.id}}>{{placeType.name}}</option>
-                {{/compare}}
-            {{/each}}
-        </select>
+        {{view 'select' content=placeTypes.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
     </div>
 </div>

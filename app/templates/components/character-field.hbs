@@ -1,0 +1,7 @@
+<div class='form-group'>
+    <label for='place-type' class='control-label col-sm-4'>Character</label>
+
+    <div class='col-sm-8'>
+        {{view 'select' content=characters.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+    </div>
+</div>

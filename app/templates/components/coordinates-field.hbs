@@ -1,23 +1,20 @@
 <div class='form-group'>
     <label for='coordinates' class='control-label col-sm-4'>Coordinates</label>
 
-    <div class='col-sm-8' style='position:relative;'>
+    <div class='col-sm-8'>
         {{#if item.map_id}}
             {{#if map.image}}
                 <img {{bind-attr src=map.image}} alt=''>
+                <svg id='coords' xmlns='http://www.w3.org/2000/svg' version='1.1' class='coords-svg'>
+                    {{#each place in places}}
+                        {{{coords-display place.coordinates item.id place.id}}}
+                    {{/each}}
+                </svg>
             {{else}}
                 Map image could not be found.
             {{/if}}
         {{else}}
             Please select a map.
         {{/if}}
-
-        <svg id='coords' xmlns='http://www.w3.org/2000/svg' version='1.1' style='position:absolute; top:0; left:15px; z-index:2;'>
-            {{#each place in places}}
-                {{#compare place.id '!=' item.id}}
-                    {{{coords place.coordinates}}}
-                {{/compare}}
-            {{/each}}
-        </svg>
     </div>
 </div>
