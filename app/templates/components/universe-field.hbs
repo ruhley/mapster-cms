@@ -2,6 +2,10 @@
     <label for='universe' class='control-label col-sm-4'>Universe</label>
 
     <div class='col-sm-8'>
-        {{view 'select' content=universe.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+      <select class="form-controler">
+        {{#each universe.content.content key="@index" as |universe|}}
+          <option value="{{universe.id}}"  selected={{is-equal item selectedValue}}>{{universe.name}}</option>
+        {{/each}}
+      </select>
     </div>
 </div>

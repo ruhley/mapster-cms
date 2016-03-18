@@ -2,6 +2,10 @@
     <label for='map' class='control-label col-sm-4'>Map</label>
 
     <div class='col-sm-8'>
-        {{view 'select' content=maps.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+      <select class="form-controler">
+        {{#each maps.content.content key="@index" as |map|}}
+          <option value="{{map.id}}"  selected={{is-equal item selectedValue}}>{{map.name}}</option>
+        {{/each}}
+      </select>
     </div>
 </div>

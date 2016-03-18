@@ -2,6 +2,10 @@
     <label for='media' class='control-label col-sm-4'>Media</label>
 
     <div class='col-sm-8'>
-        {{view 'select' content=media.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+      <select class="form-controler">
+        {{#each media.content.content key="@index" as |media|}}
+          <option value="{{media.id}}"  selected={{is-equal item selectedValue}}>{{media.name}}</option>
+        {{/each}}
+      </select>
     </div>
 </div>

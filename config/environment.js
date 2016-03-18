@@ -7,9 +7,7 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
-      FEATURES: {
-        'ember-htmlbars-component-helper': true
-      }
+      FEATURES: {}
     },
 
     APP: {

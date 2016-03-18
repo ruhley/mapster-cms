@@ -2,6 +2,10 @@
     <label for='place-type' class='control-label col-sm-4'>Place Type</label>
 
     <div class='col-sm-8'>
-        {{view 'select' content=placeTypes.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+      <select class="form-controler">
+        {{#each placeTypes.content.content key="@index" as |placeType|}}
+          <option value="{{placeType.id}}"  selected={{is-equal item selectedValue}}>{{placeType.name}}</option>
+        {{/each}}
+      </select>
     </div>
 </div>

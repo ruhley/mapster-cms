@@ -2,6 +2,10 @@
     <label for='chapter' class='control-label col-sm-4'>Chapter</label>
 
     <div class='col-sm-8'>
-        {{view 'select' content=chapters.content.content value=value optionValuePath='content.id' optionLabelPath='content.name' prompt=prompt class='form-control'}}
+      <select class="form-controler">
+        {{#each chapters.content.content key="@index" as |chapter|}}
+          <option value="{{chapter.id}}"  selected={{is-equal item selectedValue}}>{{chapter.name}}</option>
+        {{/each}}
+      </select>
     </div>
 </div>
